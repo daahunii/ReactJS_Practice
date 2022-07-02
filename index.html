@@ -7,168 +7,31 @@
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    function TimeConvert() {
-      const [amount, setAmount] = React.useState(0);
-      const [inverted, setInverted] = React.useState(false);
-      const onChange = (event) => {
-        setAmount(event.target.value);
-        // console.log(event.target.value);
-      };
-      const reset = () => setAmount(0);
-      const onInvert = () => {
-        reset();
-        setInverted((current) => !current);
-      };
+    function Btn(prop) {
       return (
-        <div>
-          <h3> Convert time element </h3>
-          <div>
-            <label htmlfor="minutes"> Minutes : </label>
-            <input
-              value={inverted ? amount * 60 : amount}
-              id="minutes"
-              placeholder="Minutes"
-              type="number"
-              onChange={onChange}
-              disabled={inverted}
-            />
-          </div>
-          <h4>You want to convert : {amount} </h4>
-          <div>
-            <label htmlfor="hours"> Hours : </label>
-            <input
-              value={inverted ? amount : Math.round(amount / 60)}
-              id="hours"
-              placeholder="Hours"
-              type="number"
-              onChange={onChange}
-              disabled={!inverted}
-            />
-          </div>
-          <div>
-            <button onClick={reset}>Reset</button>
-            <button onClick={onInvert}>
-              {inverted ? "Turn back" : "Invert"}
-            </button>
-          </div>
+        <div
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+          }}
+        >
+          {prop.text}
         </div>
       );
     }
-    function KmToMiles() {
-      const [amount, setAmount] = React.useState(0);
-      const [inverted, setInverted] = React.useState(false);
-      const onChange = (event) => {
-        setAmount(event.target.value);
-        // console.log(event.target.value);
-      };
-      const reset = () => setAmount(0);
-      const onInvert = () => {
-        reset();
-        setInverted((current) => !current);
-      };
-      return (
-        <div>
-          <h3> Convert length element </h3>
-          <div>
-            <label htmlfor="km"> Km : </label>
-            <input
-              value={inverted ? amount * 1.609344 : amount}
-              id="km"
-              placeholder="Km"
-              type="number"
-              onChange={onChange}
-              disabled={inverted}
-            />
-          </div>
-          <h4>You want to convert : {amount} </h4>
-          <div>
-            <label htmlfor="miles"> Miles : </label>
-            <input
-              value={inverted ? amount : amount / 1.609344}
-              id="miles"
-              placeholder="Miles"
-              type="number"
-              onChange={onChange}
-              disabled={!inverted}
-            />
-          </div>
-          <div>
-            <button onClick={reset}>Reset</button>
-            <button onClick={onInvert}>
-              {inverted ? "Turn back" : "Invert"}
-            </button>
-          </div>
-        </div>
-      );
-    }
+
     function App() {
-      const [index, setIndex] = React.useState("xx");
-      const onSelect = (event) => {
-        setIndex(event.target.value);
-      };
       return (
         <div>
-          <h1>super convertor</h1>
-          <select value={index} onChange={onSelect}>
-            <option value="xx">Select your units</option>
-            <option value="0">Minutes & Hours</option>
-            <option value="1">KM & Miles</option>
-          </select>
-          <hr />
-          {index === "xx" ? "Please select your units" : null}
-          {index === "0" ? <TimeConvert /> : null}
-          {index === "1" ? <KmToMiles /> : null}
+          <Btn text="Save Changes" />
+          <Btn text="Continue" />
         </div>
       );
     }
     const root = document.getElementById("root");
     ReactDOM.render(<App />, root);
-
-    /*
-    const root = document.getElementById("root");
-
-    const Title = () => (
-      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-        I want to master ReactJS (and I want JongGang)
-      </h3>
-    );
-    const Button = () => (
-      <button
-        style={{ backgroundColor: "tomato" }}
-        onClick={() => console.log("I have been clicked!")}
-      >
-        Click me!
-      </button>
-    );
-
-    const Container = () => (
-      <div>
-        <Title />
-        <Button />
-      </div>
-    );
-    ReactDOM.render(<Container />, root);
-
-    */
-
-    /*
-      old way...
-
-      const span = React.createElement("h3", {
-          onMouseEnter: () => console.log("mouse enter"),
-      }, "hello");
-
-      const btn = React.createElement("button", {
-          onClick: () => console.log("I have been clicked!"),
-          style: {
-              backgroundColor: "tomato",
-          }
-      }, "Click me!");
-      */
-    /*
-    old way too...
-    const container = React.createElement("div", null, [Title, Button]);
-    ReactDOM.render(container, root);
-    */
   </script>
 </html>
